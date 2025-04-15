@@ -10,7 +10,7 @@ while true; do
         
         psql $DATABASE_URL <<EOF
 \set content \`cat /tmp/manga$manga_id.json\`
-INSERT INTO manga_data (jsonb) VALUES (:'content'::jsonb);
+INSERT INTO manga_data (manga_id, jsonb) VALUES ($manga_id, :'content'::jsonb);
 EOF
         
         echo "Saved manga ID: $manga_id"
